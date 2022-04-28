@@ -1,0 +1,41 @@
+{% include 'user_navigation.html' %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    <center><h1 style="font-family:mv boli; margin-top:10px;color:white;font-weight:bold;">SUBMIT YOUR FEEDBACK</h1></center>
+    <div class="container">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6 mt-3" style="border: 5px solid white;border-radius:25px;padding:20px;color:white;">
+                <label ><b>Full Name</label>
+                <input type="text" class="form-control" name="fname" value="{{request.user.first_name}}{{request.user.last_name}}">
+                <label><b>Email:</label>
+                <input type="text" class="form-control" name="email" value="{{request.user}}" readonly>
+                <label><b>Contact Number:</label>
+                <input type="text" class="form-control" name="mobile" value="{{data.mobile}}">
+                <label><b>Feedback</label>
+                <input type="text" class="form-control" name="feedback" placeholder="Write your feedback">
+                <center>
+                    <a href="{% url 'index' %}" class="btn btn-secondary btn-lg mt-3">Cancel</a><input type="submit" class="btn btn-primary btn-lg mt-3">
+                </center>
+            </div>
+            <div class="col-3"></div>
+        </div>
+    </div>
+</form>
+
+{% if error == "no" %}
+<script>
+    alert("Feedback Submitted Successfully")
+    window.location = ('{% url 'user_home' %}')
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert("Something Wrong, Try Again...")
+    window.location=('{% url 'feedback' %}')
+</script>
+{% endif %}
+
+{% include 'footer.html' %}

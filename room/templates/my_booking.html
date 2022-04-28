@@ -1,0 +1,40 @@
+{% include 'user_navigation.html' %}
+<marquee behavior="alternate"><h1 style="font-family:mv boli; margin-top:10px;color:white;font-weight:bold;">MY BOOKING</h1></marquee>
+
+<table class="table table-stripped mt-3" >
+    <tr bgcolor="lightgreen">
+        <th>Room No</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Contact</th>
+        <th>Booking Date</th>
+        <th>No. of days</th>
+        <th>Price</th>
+        <th>Status</th>
+        <th><span style="margin-left:50px;">Action</span></th>
+    </tr>
+    {% for i in data %}
+    {% if i.email_id == request.user.username %}
+    <tr bgcolor="lightcyan" style="color:black">
+        <td><b>{{i.room_no}}</b></td>
+        <td>{{i.full_name}}</td>
+        <td>{{i.email_id}}</td>
+        <td>{{i.mobile1}}<br>{{i.mobile2}}</td>
+        <td>{{i.booking_date}}</td>
+        <td>{{i.days}} Days</td>
+        <td>Rs. {{i.price}}</td>
+        {% if i.status == 'Confirm' %}
+        <td><span style="color:lightgreen;" class="btn btn-success btn-sm "><b>{{i.status}}</b></span></td>
+        {% elif i.status == 'Canceled' %}
+        <td><span style="color:lightred;" class="btn btn-danger btn-sm "><b>{{i.status}}</b></span></td>
+        {% else %}
+        <td><span style="color:skyblue;" class="btn btn-primary btn-sm "><b>{{i.status}}</b></span></td>
+        {% endif %}
+        <td align="center"><a href="{% url 'cancel_booking' i.id %}" class="btn btn-danger btn-sm" onclick="return confirm('Are you Sure?')">Cancel Booking</a></td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+</table>
+
+
+{% include 'footer.html' %}

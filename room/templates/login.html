@@ -1,0 +1,45 @@
+{% include 'navigation.html' %}
+<form action="" method="post">
+{% csrf_token %}
+<div class="row">
+
+    <div class="col-4"></div>
+    <div class="col-4">
+    <div class="container" style="border:5px solid white;margin:50px;font-size:20px;background:lightgrey;">
+        <label ><b>Username:</b></label>
+        <input type="text" class="form-control" name="uname" required placeholder="Enter Username here">
+        <label><b>Password:</b></label>
+        <input type="password" class="form-control" name="pswd" required placeholder="Enter Password"><br>
+        <center><div style="font-size:13px;">Forget password? <a href="{% url 'forgot_password' %}">Click here to reset password</a></div>
+
+        <input type="submit" value="Login" class="btn btn-primary" style="margin-top:30px;width:150px; height:50px;font-size:30px;">
+            </center>
+        <br/>
+    </div>
+    </div>
+    <div class="col-4"></div>
+</div>
+</form>
+
+{% if error == "no" %}
+<script>
+    alert("Admin Login Successfully")
+    window.location=('{% url 'admin_home' %}')
+</script>
+{% endif %}
+
+{% if error == "not" %}
+<script>
+    alert("User Login Successfully")
+    window.location=('{% url 'user_home' %}')
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert("Username Password Does not match. Try Again...")
+    window.location=('{% url 'login' %}')
+</script>
+{% endif %}
+
+{% include 'footer.html' %}

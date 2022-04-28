@@ -1,0 +1,32 @@
+{% include 'admin_navigation.html' %}
+<center><h1 style="font-family:mv boli; margin-top:10px;color:white;font-weight:bold;">MANAGE BOOKING STATUS</h1></center>
+
+<hr>
+
+<form class="container mt-5" method="post">
+    {% csrf_token %}
+    <label><b>Customer Name:</b></label>
+    <input type="text" class="form-control" name="uname" value="{{data.full_name}}">
+    <label><b>Status:</b></label>
+    <select class="form-control" name="rstatus">
+         <option value="Confirm">Confirm</option>
+        <option value="Canceled">Cancel</option>
+    </select>
+<center>
+    <input type="submit" class="btn btn-primary" style="margin-top:2%; color:darkcyan; background-color:black ; height:50px; font-size:25px">
+</center>
+</form>
+{% if error == "no" %}
+<script>
+    alert("Status Changed Successfully")
+    window.location = ('{% url 'view_booking' %}')
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert("Something went wrong, Try Again")
+</script>
+{% endif %}
+
+{% include 'footer.html' %}

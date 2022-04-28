@@ -1,0 +1,65 @@
+
+{% include 'admin_navigation.html' %}
+<center><h1 style="font-family:mv boli; margin-top:10px;color:white;font-weight:bold;">CONTACT DETAIL</h1></center>
+
+<table class="table">
+    <tr bgcolor="#668800">
+        <th>S.NO.</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Purpose</th>
+        <th>Action</th>
+    </tr>
+    {% for i in data %}
+    <tr bgcolor="black" style="color:white">
+        <td>{{forloop.counter}}</td>
+        <td>{{i.full_name}}</td>
+        <td>{{i.email}}</td>
+        <td>{{i.mobile}}</td>
+        <td>{{i.comment}}</td>
+        <td><a href="{% url 'delete_contact' i.id %}" onclick="return confirm('Are you Sure? ')" class="btn btn-danger btn-sm">Delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+<div align="center"  style="color:cyan;">
+    {% if not data %}
+    <h1>Empty Contact's</h1>
+    {% endif %}
+</div>
+
+
+
+
+<center><h1 style="font-family:mv boli; margin-top:10px;color:white;font-weight:bold;">FEEDBACK DETAIL</h1></center>
+
+<table class="table">
+    <tr bgcolor="lightgreen" >
+        <th>S.NO.</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Feedback</th>
+        <th>Action</th>
+    </tr>
+    {% for i in data2 %}
+    <tr bgcolor="black" style="color:white">
+        <td>{{forloop.counter}}</td>
+        <td>{{i.full_name}}</td>
+        <td>{{i.email}}</td>
+        <td>{{i.mobile}}</td>
+        <td>{{i.feedback}}</td>
+        <td><a href="{% url 'delete_feedback' i.id %}" onclick="return confirm('Are you Sure?')" class="btn btn-danger btn-sm">Delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+<div align="center" style="color:cyan;">
+    {% if not data2 %}
+    <h1>Empty Feedback</h1>
+    {% endif %}
+</div>
+
+{% include 'footer.html' %}
+
+
+

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'admin_navigation.html' %}
+{% load static %}
+    <meta charset="UTF-8">
+    <title>Title</title>
+     <style>
+    .anim{
+	background-image:url('{% static 'images/S.jpg' %}');
+	background-size:100%;
+	background-repeat: no repeat;
+	background-size:cover;
+	animation: demo 18s ease-in-out  infinite 2s;
+	}
+	@keyframes demo{
+	0%,100%{background-image:url('{% static 'images/R.jpg' %}');}
+	20%{background-image:url('{% static 'images/P.jpg' %}');}
+	40%{background-image:url('{% static 'images/Q.jpg' %}');}
+	60%{background-image:url('{% static 'images/V.jpg' %}');}
+	80%{background-image:url('{% static 'images/P.jpg' %}');}
+
+
+	}
+    </style>
+</head>
+<body class="anim">
+</body>
+</html>
+
+
+{% include 'footer.html' %}

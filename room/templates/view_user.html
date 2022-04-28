@@ -1,0 +1,30 @@
+{% include 'admin_navigation.html' %}
+
+
+
+<table class="table mt-3">
+    <tr bgcolor="pink">
+        <th>S.No.</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Contact</th>
+        <th>Gender</th>
+        <th>Address</th>
+        <th>Profile</th>
+        <th>Action</th>
+    </tr>
+    {% for i in data %}
+    <tr bgcolor="white">
+        <td>{{forloop.counter}}</td>
+        <td>{{i.user.first_name}}{{i.user.last_name}}</td>
+        <td>{{i.user.username}}</td>
+        <td>{{i.mobile}}</td>
+        <td>{{i.gender}}</td>
+        <td>{{i.address}}</td>
+        <td><img src="{{i.image.url}}" alt="" height="80" width="80" style="border-radius:50%;"></td>
+        <td><a href="{% url 'delete_user' i.user.id %}" class="btn btn-danger btn-sm mt-4">Delete</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% include 'footer.html' %}
